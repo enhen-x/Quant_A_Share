@@ -146,9 +146,9 @@ def process_features():
             df['vol_ratio'] = df['volume'] / df['vol_ma5']
             
             # --- C. 构造标签 (Label Generation) ---
-            # 目标: 预测未来 10 个交易日后的收益率
-            # shift(-10) 表示把 10 天后的 close 移到现在这一行
-            HOLDING_PERIOD = 10
+            # 目标: 预测未来 5 个交易日后的收益率
+            # shift(-5) 表示把 5 天后的 close 移到现在这一行
+            HOLDING_PERIOD = 5
             TARGET_PCT = 0.05 # 5%
             
             df['future_close'] = df['close'].shift(-HOLDING_PERIOD)

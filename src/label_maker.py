@@ -80,7 +80,7 @@ def make_relative_labels():
         return
 
     # C. 计算指数的未来收益率
-    HOLDING_PERIOD = 10
+    HOLDING_PERIOD = 5
     
     print("2. 计算基准指数同期涨幅...")
     df_index = df_index.sort_values('date')

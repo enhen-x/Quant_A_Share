@@ -56,7 +56,7 @@ def train_model():
         n_jobs=-1,
         random_state=42,
         eval_metric='auc',
-        scale_pos_weight=1,
+        scale_pos_weight=3.69,  # 处理类别不平衡（根据正负样本比例调整）
         early_stopping_rounds=50  # <--- ✅ 移到这里！
     )
 
