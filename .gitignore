@@ -1,0 +1,49 @@
+# --- Python 系统垃圾文件 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- IDE 编辑器配置 (不需要上传) ---
+.vscode/
+.idea/
+*.swp
+
+# --- 操作系统垃圾文件 ---
+.DS_Store
+Thumbs.db
+
+# --- 核心数据 (千万不要上传，体积太大了) ---
+data/raw/*.csv
+data/processed/*.pkl
+data/processed/*.csv
+
+# --- 运行生成的临时文件 ---
+logs/
+*.log
+
+# --- 本地生成的模型和图表 (可选，看你想不想备份) ---
+# 如果你想在GitHub上展示回测图，可以注释掉下面这一行(前面加#)
+#  plots/*.png
+
+# 忽略本地训练的大模型文件 (通常很大)
+models/*.model
+models/*.json
+models/*.pkl
+
+# --- 虚拟环境 ---
+venv/
+env/
+
+# --- 忽略中间生成的 CSV 结果 ---
+today_buy_list.csv
+buy_list_*.csv
+
+# --- ⚠️ 特殊规则：保留文件夹结构 ---
+# 下面的意思是：忽略 data/raw 下的所有文件，但不要忽略 .gitkeep
+# 这样别人 clone 你的项目时，会有 data/raw 这个空文件夹，但里面没有大文件
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!models/.gitkeep
+!plots/.gitkeep
+!logs/.gitkeep

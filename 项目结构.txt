@@ -1,0 +1,33 @@
+QUANT_A_SHARE/
+├── data/                       # 数据存储目录
+│   ├── processed/              # 清洗与处理后的数据
+│   │   ├── dataset_labeled.pkl # [核心] 特征工程+打标后的最终训练数据
+│   │   ├── dataset_sample.csv  # 训练数据的前1000行样例（方便Excel查看）
+│   │   └── stock_pool.csv      # 经过selection筛选后的股票池清单
+│   └── raw/                    # [原始] 下载的个股CSV历史数据（Baostock源）
+├── logs/                       # 存放运行日志（如有）
+├── models/                     # 模型存储目录
+│   ├── feature_names.pkl       # 训练时使用的特征列名列表（确保预测时特征对齐）
+│   └── xgb_alpha_model.json    # 训练好的XGBoost模型文件
+├── plots/                      # 回测结果可视化图表
+│   ├── final_backtest_aggressive.png    # 激进策略（强制满仓）的回测资金曲线
+│   ├── final_backtest_strict.png        # 严格策略的回测资金曲线
+│   └── random_backtest_full_history.png # [新增] 全历史随机起点压力测试分布图
+├── src/                        # 源代码目录
+│   ├── audit_trades.py         # [审计] 检查回测交易记录，识别涨停/ST陷阱
+│   ├── backtest.py             # [回测] 模拟历史交易 (激进选股+严格风控)
+│   ├── data_loader.py          # [数据] 下载A股历史数据与基准指数
+│   ├── feature_eng.py          # [特征] 计算技术指标（RSI, MACD等）并生成数据集
+│   ├── features_lib.py         # [库] 公共指标计算函数库（防止逻辑不一致）
+│   ├── label_maker.py          # [标签] 计算超额收益（Alpha），定义正负样本
+│   ├── model_trainer.py        # [训练] 训练XGBoost模型并评估
+│   ├── random_backtest.py      # [新增] 随机起点多轮次回测，验证策略鲁棒性
+│   ├── selection.py            # [筛选] 根据流动性与价格初筛股票池
+│   ├── trader.py               # [实盘] 每日选股脚本 (含ST/涨跌停过滤)
+│   └── weekly_update.py        # [自动化] 周度任务总指挥（一键更新全流程）
+├── config.py                   # 全局配置参数（资金量、路径等）
+├── main.py                     # [入口] 项目中央控制台
+├── requirements.txt            # Python依赖库列表
+├── buy_list_YYYY-MM-DD.csv     # [结果] 实盘推荐买入清单 (带日期后缀)
+├── 项目结构.txt                 # 项目目录结构说明文档
+└── 注意事项.txt                 # 实盘操作风险提示
