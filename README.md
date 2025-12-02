@@ -126,7 +126,7 @@ buy_list_YYYY-MM-DD.csv
 ## Strategy Logic
 - Universe: Broad A-share universe; exclude low-liquidity names, STAR/NEEQ, and ST.  
   （股票池：全市场；过滤低流动性，剔除科创板/北交所/ST）
-- Label: `Future_Return_10d > Benchmark_Return_10d + 3%`  
+- Label: `Future_Return_5d > Benchmark_Return_5d + 3%`  
   （标签：未来5日相对基准超3%）
 - Features:
   - Momentum: ROC(5/10/20)

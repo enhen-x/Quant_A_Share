@@ -110,8 +110,15 @@ def make_relative_labels():
     # --- 标签定义 ---
     # 目标：跑赢中证500指数 3% 以上
     ALPHA_THRESHOLD = 0.03
-    df_merged['target'] = (df_merged['excess_return'] > ALPHA_THRESHOLD).astype(int)
-    
+
+    # 【新增约束】：目标 2：个股未来 5 日绝对收益必须大于 1% (确保大致向上)
+    MIN_ABS_RETURN_THRESHOLD = 0.01
+    # 最终 Target 定义：必须同时满足超额收益和绝对收益双重条件
+    df_merged['target'] = (
+        (df_merged['excess_return'] > ALPHA_THRESHOLD) & 
+        (df_merged['future_return'] > MIN_ABS_RETURN_THRESHOLD)
+    ).astype(int)
+
     # 统计对比
     old_pos_ratio = df['target'].mean()
     new_pos_ratio = df_merged['target'].mean()
